@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form #form1="ngForm" (ngSubmit)="onFormSubmitHandler(form1)">
+            <div class="form-group">
+                <label>Enter Name:</label>
+                <input type="text" name="fname" ngModel class="form-control" required #fname="ngModel" minlength="5">
+                <div *ngIf="fname.touched && fname.invalid" class="alert alert-danger">
+                 <span *ngIf="fname.errors?.['required']
+                 ">UserName is a required Field</span>
+                 <span *ngIf="fname.errors?.['minlength']">Username must be atleast 5 characters long</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Enter Email:</label>
+                <input type="text" name="email" ngModel class="form-control" required email #email="ngModel">
+                 <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                    <span *ngIf="email.touched && email.errors?.['required']">
+                      Email Address is required field
+                    </span>
+                    <span *ngIf="email.touched && email.errors?.['email']">
+                     Please enter a valid Email Address
+                    </span>
+                 </div>
+            </div>
+            <input [disabled]="form1.invalid" type="submit" value="submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>
